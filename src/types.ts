@@ -43,6 +43,8 @@ export interface Campaign {
   totalBudget: number;
   spent: number;
   status: 'active' | 'completed' | 'paused';
+  category?: string;
+  tags?: string[];
 }
 
 export interface KOLAppCampaign {
@@ -55,34 +57,6 @@ export interface KOLAppCampaign {
   clicks: number;
   conversions: number;
   earningsGenerated: number; // 100% gross
-}
-
-export interface ExchangeListing {
-  id: string;
-  kolId: string;
-  kolName: string;
-  kolAvatar: string;
-  kolNiche: string;
-  kolFollowers: number;
-  targetPlatform: string; // Douyin, Little Red Book, Weibo, etc.
-  minFollowersRequired: number;
-  exchangeDetails: string;
-  postSlotsAvailable: number;
-  status: 'open' | 'matched' | 'completed';
-  createdAt: string;
-}
-
-export interface ExchangeRequest {
-  id: string;
-  listingId: string;
-  senderId: string;
-  senderName: string;
-  senderAvatar: string;
-  senderNiche: string;
-  senderFollowers: number;
-  proposalDetails: string;
-  status: 'pending' | 'accepted' | 'declined';
-  createdAt: string;
 }
 
 export interface OrderTransaction {
@@ -144,13 +118,23 @@ export interface ExclusivePost {
 
 export interface PrivateGroup {
   id: string;
-  platform: 'WeChat' | 'QQ' | 'Telegram' | 'Discord' | 'Other';
+  platform: 'WhatsApp' | 'Telegram' | 'Discord' | 'Messenger' | 'Other';
   name: string;
   qrCode?: string;
   joinLink: string;
   requiredTier: 'any_fan' | 'premium' | 'super_premium';
   activeMembers: number;
   rulesDescription: string;
+  campaignId?: string;
+  campaignTitle?: string;
+  coupons?: Array<{
+    id: string;
+    code: string;
+    discount: string;
+    description: string;
+    expiry: string;
+    distributedCount: number;
+  }>;
 }
 
 export interface AICreativeInput {
@@ -168,3 +152,38 @@ export interface AICreativeOutput {
   creativeImgPrompt: string;
   interactionIdeas: string[];
 }
+
+export interface AdTrafficEvent {
+  id: string;
+  username: string;
+  avatar: string;
+  ipAddress: string;
+  location: string;
+  registeredAt: string;
+  retentionDays: number; // e.g. 3, 7, 14
+  retentionStatus: 'active' | 'inactive';
+  campaignId: string;
+  campaignTitle: string;
+  payoutAmount: number;
+  orderStatus: 'paid' | 'failed' | 'registered_only';
+  failureReason?: string; // e.g. "余额不足", "超时未付", "风控拦截", "手动放弃"
+  isRecovered?: boolean;
+  recoveryNote?: string;
+}
+
+export interface KOLApplication {
+  id: string;
+  campaignId: string;
+  campaignTitle: string;
+  kolName: string;
+  kolAvatar: string;
+  niche: string;
+  followersCount: number;
+  creditScore: number;
+  platform: 'Instagram' | 'TikTok' | 'YouTube' | 'X' | 'Other';
+  socialHandle: string;
+  pitch: string;
+  status: 'pending' | 'approved' | 'rejected';
+}
+
+

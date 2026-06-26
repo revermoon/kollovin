@@ -1,6 +1,6 @@
 {
   "name": "Kollovin - 中小KOL自媒体成长与变现网站",
-  "description": "为中小KOL提供AI驱动商业联盟（CPS/CPA）、数据分析对账仪表盘、付费粉丝精细化运营及私域引流卡等功能的一站式成长网站。",
+  "description": "为中小KOL提供AI驱动商业联盟（CPS/CPA）、广告效果数据穿透与智能追单（一键挽回流失订单）、AI智能文案素材工坊及私域引流等功能的一站式成长变现网站。",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
